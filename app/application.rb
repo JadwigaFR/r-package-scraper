@@ -8,6 +8,8 @@ require 'dotenv'
 require 'yaml'
 require 'erb'
 require 'pry-byebug'
+require 'app/models/cran_server'
+require 'app/models/package'
 
 Dotenv.load(".env.#{ENV.fetch('ENVIRONMENT')}.local", ".env.#{ENV.fetch('ENVIRONMENT')}", '.env')
 def db_configuration
