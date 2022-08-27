@@ -16,5 +16,6 @@ gem 'yaml'
 
 group :development do
   gem 'pry-byebug'
+  gem 'rspec'
   gem 'rubocop'
 end
