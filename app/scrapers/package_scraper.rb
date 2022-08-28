@@ -14,7 +14,6 @@ class PackageScraper < BaseScraper
 
   def fetch_package_data!
     create_local_file
-    # binding.pry
     package_data = parse_package
     destroy_file
     package_data

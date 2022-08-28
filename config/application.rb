@@ -19,6 +19,7 @@ require './app/initializers/sidekiq'
 
 ENV['ENVIRONMENT'] ||= 'development'
 Dotenv.load(".env.#{ENV.fetch('ENVIRONMENT')}.local", ".env.#{ENV.fetch('ENVIRONMENT')}", '.env')
+OpenURI::Buffer.const_set('StringMax', 0)
 
 def db_configuration
   db_configuration_file_path = File.join(File.expand_path('..', __dir__), 'db', 'config.yml')
