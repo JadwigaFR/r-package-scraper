@@ -9,5 +9,9 @@ class UpdatePackagesWorker
     packages_url = CranServer.packages_url
     packages = PackageRepositoryScraper.new(packages_url).fetch_packages!
     packages.each { |package_hash| PackageWorker.perform_async(package_hash[:name], package_hash[:version]) }
+    # packages.each do |package_hash|
+    #   binding.pry
+    #   PackageWorker.new.perform(package_hash[:name], package_hash[:version])
+    # end
   end
 end

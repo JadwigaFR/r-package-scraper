@@ -10,7 +10,7 @@ class PackageUpdateService
   end
 
   def call!
-    package = Package.find_or_create_by_name(name)
+    package = Package.find_or_create_by(name: name)
     attributes = attributes_mapping
     result = package.update(attributes)
 

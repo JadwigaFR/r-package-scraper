@@ -7,7 +7,7 @@ require './app/workers/package_worker'
 
 RSpec.describe UpdatePackagesWorker do
   describe '#perform' do
-    let(:packages) { [{ name: 'A3', version: '1.0.0' }, { name: 'A4', version: '1.0.0' }] }
+    let(:packages) { [{ name: 'A3', version: '1.0.0' }] }
     subject { described_class.new.perform }
 
     before do
@@ -21,9 +21,18 @@ RSpec.describe UpdatePackagesWorker do
       expect(PackageRepositoryScraper).to have_received(:new).with('http://cran.r-project.org/src/contrib/PACKAGES.gz')
     end
 
-    it 'calls the package worker twice' do
+    context 'when 2 packages are fetched' do
+      let(:packages) { [{ name: 'A3', version: '1.0.0' }, { name: 'A4', version: '1.0.0' }] }
+      
+      it 'calls the package worker for each received package' do
+        subject
+        expect(PackageWorker).to have_received(:perform_async).twice
+      end
+    end
+    
+    it 'calls the package worker with the package name and version' do
       subject
-      expect(PackageWorker).to have_received(:perform_async).twice
+      expect(PackageWorker).to have_received(:perform_async).with('A3', '1.0.0')
     end
   end
 end

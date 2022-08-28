@@ -8,14 +8,13 @@ class PackageScraper < BaseScraper
   attr_reader :package_name
 
   def initialize(url, package_name)
-    super
-
-    @package_name = @opts[:package_name]
-    binding.pry
+    @url = url
+    @package_name = package_name
   end
 
   def fetch_package_data!
     create_local_file
+    # binding.pry
     package_data = parse_package
     destroy_file
     package_data
