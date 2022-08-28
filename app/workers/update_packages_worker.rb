@@ -2,14 +2,15 @@
 
 class UpdatePackagesWorker
   include Sidekiq::Worker
-
+  
   def perform
-    cran_server = CranServer.new(url: cran_server_url)
+    scraper = PackageRepositoryScraper.new(CranServer.packages_url)
 
-    packages = PackageRepositoryScraper.new(url: cran_server.url).fetch_packages!
+    packages = scraper.fetch_packages!
 
-    packages.each do |package|
-      PackageWorker.perform_async(cran_server.url, package)
+    packages.each do |package_object|
+      url = CranServer.package_url(package_object[:name], package_object[:version)
+      PackageWorker.perform_async(url, package_object[:name])
     end
   end
 end
