@@ -12,6 +12,7 @@ gem 'pg'
 gem 'rake'
 gem 'redis-namespace'
 gem 'sidekiq'
+gem 'sidekiq-cron'
 gem 'standalone_migrations', '~> 6.0.0'
 gem 'yaml'
 
