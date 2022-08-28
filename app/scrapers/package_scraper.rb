@@ -1,23 +1,17 @@
 # frozen_string_literal: true
 
 require 'rubygems/package'
-require 'open-uri'
-require 'deb_control'
+require_relative 'base_scraper'
 
 # Scraper that fetches and parses the data of a given package
-class PackageScraper
-  attr_reader :url, :package_name
+class PackageScraper < BaseScraper
+  attr_reader :package_name
 
   def initialize(url, package_name)
-    @url = url
-    @package_name = package_name
-  end
+    super
 
-  def fetch_packages!
-    create_local_file
-    packages = parse_packages
-    destroy_file
-    packages
+    @package_name = @opts[:package_name]
+    binding.pry
   end
 
   def fetch_package_data!
@@ -31,7 +25,7 @@ class PackageScraper
 
   def create_local_file
     File.open(file_path, 'wb') do |temp_file|
-      URI.open(url) do |remote_file|
+      URI.parse(url).open do |remote_file|
         unzipped = Zlib::GzipReader.open(remote_file)
         tar_folder = Gem::Package::TarReader.new(unzipped)
         file = tar_folder.seek("#{package_name}/DESCRIPTION", &:read)
@@ -48,9 +42,5 @@ class PackageScraper
 
   def file_path
     @file_path || "tmp/#{package_name}.tar"
-  end
-
-  def destroy_file
-    File.delete(file_path) if File.exist?(file_path)
   end
 end

@@ -8,7 +8,7 @@ RSpec.describe PackageScraper do
   let(:version) { '0.3' }
 
   describe '#fetch_package_data!' do
-    subject { described_class.new(CranServer.package_url(name, version), name).fetch_package_data! }
+    subject { described_class.new(CranServer.package_url(name, version), { package_name: name }).fetch_package_data! }
 
     context 'with a valid packages url' do
       it 'returns a description string' do
