@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# For a given package name and version, fetches the latest information and updates the database
 class PackageWorker
   include Sidekiq::Worker
 

@@ -3,6 +3,7 @@
 require 'open-uri'
 require 'deb_control'
 
+# Scraper that fetches and parses a list of packages
 class PackageRepositoryScraper
   attr_reader :url
 

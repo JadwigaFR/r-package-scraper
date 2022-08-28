@@ -3,5 +3,6 @@
 require 'active_record'
 
 class Package < ActiveRecord::Base
-  #  TODO: add audited gem to track version changes
+  # TODO: add validation
+  # TODO: add audited gem to track version changes
 end

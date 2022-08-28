@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This dumb object contains the url structure of a cran server.
 class CranServer
   class << self
     def base_url

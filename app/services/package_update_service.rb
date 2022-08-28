@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Service taking care of mapping the parsed information from the cran server to our package model
 class PackageUpdateService
   attr_reader :name, :data
 

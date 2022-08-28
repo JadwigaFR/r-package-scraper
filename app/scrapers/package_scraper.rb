@@ -4,6 +4,7 @@ require 'rubygems/package'
 require 'open-uri'
 require 'deb_control'
 
+# Scraper that fetches and parses the data of a given package
 class PackageScraper
   attr_reader :url, :package_name
 

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Fetches the list of packages and calls another async worker to parse each package individually
 class UpdatePackagesWorker
   include Sidekiq::Worker
 
