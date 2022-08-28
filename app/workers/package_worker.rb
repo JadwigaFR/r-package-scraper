@@ -8,6 +8,6 @@ class PackageWorker
   def perform(package_name, package_version)
     package_url = CranServer.package_url(package_name, package_version)
     package_data = PackageScraper.new(package_url, package_name).fetch_package_data!
-    PackageUpdateService.new(package_name, package_data).call!
+    PackageUpdateService.new(package_name, package_data).call! unless package_data.nil?
   end
 end

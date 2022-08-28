@@ -33,11 +33,20 @@ class PackageUpdateService
   end
 
   def r_version
+    return unless data['Depends']
+
     regexp = /\(([^)]+)\)/
-    data['Depends'].split(',').first.scan(regexp).flatten.first
+    dependency_array.first.scan(regexp).flatten.first
   end
 
   def dependencies
-    data['Depends'].split(',')[(1..-1)].join(',').strip
+    return unless data['Depends']
+    return unless dependency_array.one?
+
+    dependency_array[(1..-1)].join(',').strip
+  end
+
+  def dependency_array
+    data['Depends'].split(',')
   end
 end
