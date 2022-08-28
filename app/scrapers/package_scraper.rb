@@ -41,7 +41,8 @@ class PackageScraper
 
   def parse_package
     parsed_file = DebControl::ControlFileBase.read(file_path)
-    parsed_file.paragraphs.first.slice('Package', 'Title', 'Version', 'Author', 'Maintainer', 'Description', 'License', 'Depends', 'Date/Publication')
+    parsed_file.paragraphs.first.slice('Package', 'Title', 'Version', 'Author', 'Maintainer', 'Description', 'License',
+                                       'Depends', 'Date/Publication')
   end
 
   def file_path
