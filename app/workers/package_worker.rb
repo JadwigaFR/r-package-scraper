@@ -3,15 +3,9 @@
 class PackageWorker
   include Sidekiq::Worker
 
-  def perform(cran_server_url, package_name)
-    package_url = package_url(cran_server_url, package_name)
-    package_data = PackageScraper.new(package_url).package_data
+  def perform(package_object)
+    url = CranServer.package_url(package_object[:name], package_object[:version])
+    package_data = PackageScraper.new(url, package_object[:name]).fetch_package_data!
     PackageUpdateService(name: package_name, data: package_data).call!
-  end
-
-  private
-
-  def package_url(cran_server_url, package_name)
-    "#{cran_server_url}/#{package_name}"
   end
 end
