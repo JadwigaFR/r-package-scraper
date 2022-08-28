@@ -3,7 +3,7 @@
 
 require 'bundler/setup'
 $LOAD_PATH.unshift File.expand_path('..', __dir__)
-require './app/application'
+require './config/application'
 require 'bundler'
 Bundler.require
 

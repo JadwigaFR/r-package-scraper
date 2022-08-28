@@ -1,4 +1,0 @@
-# Every day at midnight
-r_packages_indexing:
-   cron: "0 0 * * *"
-   class: "UpdatePackagesWorker"
