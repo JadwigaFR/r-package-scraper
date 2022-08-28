@@ -4,8 +4,8 @@ require './app/scrapers/package_scraper'
 require './app/models/cran_server'
 
 RSpec.describe PackageScraper do
-  let(:name) { 'ABPS'}
-  let(:version) { '0.3'}
+  let(:name) { 'ABPS' }
+  let(:version) { '0.3' }
 
   describe '#fetch_packages!' do
     subject { described_class.new(CranServer.package_url(name, version), name).fetch_package_data! }
@@ -13,14 +13,14 @@ RSpec.describe PackageScraper do
     context 'with a valid packages url' do
       it 'returns a description string' do
         VCR.use_cassette('package') do
-          expect(subject).to be_a_kind_of(String)
+          expect(subject).to be_a_kind_of(Hash)
         end
       end
 
       it 'parses correctly packages file' do
         VCR.use_cassette('package') do
-          expect(subject).to include("Package: #{name}")
-          expect(subject).to include("Version: #{version}")
+          expect(subject['Package']).to eql(name)
+          expect(subject['Version']).to eql(version)
         end
       end
     end

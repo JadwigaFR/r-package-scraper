@@ -12,6 +12,3 @@ Dotenv.load
 
 require 'pry-byebug'
 Pry.start
-
-require 'irb'
-IRB.start(__FILE__)
