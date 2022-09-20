@@ -1,5 +1,4 @@
 # README
-This repository was created to fulfill Latana's coding challenge
 
 ## Dependencies
 - ruby `3.1.2`
@@ -31,14 +30,5 @@ Given more time, I would work on:
 - Package validation. Validation of the fields and maybe some better formatting.
 - Package versioning. Recognize when a new version has been published of an indexed package and store new version without
 overwriting already indexed one.
-
-### Remarks
-I am used to working with rails application so I wanted to challenge myself by creating a bare ruby
-application. It took me a long time to work with gems I'm used to but outside the rails framework. I have 
-been struggling with loading the application files properly at the right moment, I definitely need more practice with ruby
-without rails apps.
-
-I also found it challenging to work with the different file types, tars and gzs, finding a proper strategy for I/O keeping 
-the performance in mind.
 
 
